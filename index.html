@@ -1,95 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Promope | Connect Influencers & Brands</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; background: #f9fafb; }
-    .gradient-text { background: linear-gradient(90deg, #6a5af9, #8a4af3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hover-card:hover { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: 0.3s; }
-    .whatsapp-btn { position: fixed; bottom: 20px; right: 20px; z-index: 50; }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Promope — Home</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
-<body class="overflow-x-hidden">
-
-  <!-- Navbar -->
-  <header class="bg-white shadow-sm sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-      <div class="flex items-center space-x-2">
-        <img src="logo.png" alt="Promope Logo" class="h-10 w-auto">
-      </div>
-      <nav class="hidden md:flex space-x-6 text-gray-700 font-medium">
-        <a href="index.html" class="hover:text-purple-600">Home</a>
-        <a href="influencer-signup.html" class="hover:text-purple-600">Influencers</a>
-        <a href="brand-signup.html" class="hover:text-purple-600">Brands</a>
-        <a href="#contact" class="hover:text-purple-600">Contact</a>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Promope</div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="signup.html">Join</a>
+        <a href="login.html" class="btn-outline">Login</a>
       </nav>
-      <div>
-        <a href="influencer-signup.html" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md">Join Now</a>
-      </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="text-center py-20 bg-gradient-to-r from-blue-500 to-purple-600 text-white" data-aos="fade-up">
-    <h1 class="text-4xl md:text-6xl font-bold mb-4">Grow with India’s Fastest Influencer Network</h1>
-    <p class="text-lg md:text-xl mb-6 opacity-90">Connect brands and influencers for seamless collaboration</p>
-    <a href="influencer-signup.html" class="bg-white text-purple-700 font-semibold px-6 py-3 rounded-md hover:bg-gray-200 transition">Get Started</a>
-  </section>
-
-  <!-- Categories -->
-  <section class="max-w-6xl mx-auto py-16 px-6 text-center">
-    <h2 class="text-3xl font-bold gradient-text mb-8">Top Categories</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-4">
-      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Finance</p></div>
-      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Trading</p></div>
-      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Crypto</p></div>
-      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Tech</p></div>
-      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Fashion</p></div>
-      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Lifestyle</p></div>
-      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Education</p></div>
+  <!-- Hero -->
+  <section class="hero container">
+    <h1>Promote and get paid — influencer collaborations simplified.</h1>
+    <p class="lead">Work with creators who fit your brand — measurable, secure and fast.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="signup.html?role=influencer">Join as Creator</a>
+      <a class="btn-ghost" href="signup.html?role=brand">Create Campaign</a>
     </div>
   </section>
 
-  <!-- Trusted Brands -->
-  <section class="bg-gray-50 py-16" data-aos="fade-up">
-    <div class="text-center mb-8">
-      <h2 class="text-3xl font-bold gradient-text">Trusted by Indian Brands</h2>
-      <p class="text-gray-600 mt-2">We collaborate with top fintech and lifestyle companies</p>
+  <!-- How it works -->
+  <section class="how container">
+    <h2>How Promope Works</h2>
+    <div class="steps">
+      <div class="step card">
+        <div class="step-num">1</div>
+        <h3>Create profile</h3>
+        <p>Signup as brand or creator and complete your profile.</p>
+      </div>
+      <div class="step card">
+        <div class="step-num">2</div>
+        <h3>Match & collaborate</h3>
+        <p>Find creators or campaigns using filters & invite directly.</p>
+      </div>
+      <div class="step card">
+        <div class="step-num">3</div>
+        <h3>Deliver & get paid</h3>
+        <p>Track deliverables and receive payouts after approval.</p>
+      </div>
     </div>
-    <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 place-items-center">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Zerodha_Logo.png" class="h-10 grayscale hover:grayscale-0 transition" alt="Zerodha">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Groww_app_logo.png" class="h-10 grayscale hover:grayscale-0 transition" alt="Groww">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Upstox_logo.svg" class="h-10 grayscale hover:grayscale-0 transition" alt="Upstox">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Angel_One_logo.png" class="h-10 grayscale hover:grayscale-0 transition" alt="Angel One">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/CoinDCX_logo.png" class="h-10 grayscale hover:grayscale-0 transition" alt="CoinDCX">
+  </section>
+
+  <!-- CTA box -->
+  <section class="cta container gradient-card">
+    <h3>Work with creators who fit your brand — measurable, secure and fast.</h3>
+    <div class="cta-btns">
+      <a class="btn-primary" href="signup.html?role=influencer">Join as Creator</a>
+      <a class="btn-ghost" href="signup.html?role=brand">Create Campaign</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container faq">
+    <h2>FAQ</h2>
+    <div class="accordion">
+      <details>
+        <summary>1. What is Promope?</summary>
+        <div class="acc-body">Promope is a platform to connect brands with creators for paid campaigns.</div>
+      </details>
+      <details>
+        <summary>2. How do I join as an influencer?</summary>
+        <div class="acc-body">Click "Join as Creator", register and complete your profile.</div>
+      </details>
+      <details>
+        <summary>3. How do payments work?</summary>
+        <div class="acc-body">This demo uses mock payments. Real payments require a backend integration.</div>
+      </details>
+      <details>
+        <summary>4. Do I need followers to join?</summary>
+        <div class="acc-body">No - you can join and get invited based on your niche and portfolio.</div>
+      </details>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-white border-t mt-12 py-6">
-    <div class="max-w-6xl mx-auto text-center">
-      <img src="logo.png" alt="Promope Logo" class="h-10 mx-auto mb-2">
-      <p class="text-gray-500 mb-2">support@promope.com</p>
-      <div class="flex justify-center space-x-4 mb-2">
-        <a href="privacy.html" class="text-gray-600 hover:text-purple-600">Privacy Policy</a>
-        <a href="terms.html" class="text-gray-600 hover:text-purple-600">Terms</a>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="brand">
+        <div class="logo-small">Promope</div>
+        <p>Promote and get paid — influencer collaborations simplified.</p>
       </div>
-      <p class="text-gray-400 text-sm">© 2025 Promope. All rights reserved.</p>
+      <div class="links">
+        <h4>Company</h4>
+        <a href="faq.html">FAQ</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <div class="contact">
+        <h4>Contact</h4>
+        <div>support@promope.com</div>
+        <div>+91 99999 99999</div>
+      </div>
     </div>
+    <div class="copyright">© 2025 Promope. All rights reserved.</div>
   </footer>
 
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/911234567890" class="whatsapp-btn">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="h-14 w-14 rounded-full shadow-lg hover:scale-105 transition" alt="WhatsApp">
+  <!-- WhatsApp sticky -->
+  <a class="whatsapp-sticky" href="https://wa.me/919999999999" target="_blank" aria-label="WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="whatsapp" />
   </a>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init();</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
