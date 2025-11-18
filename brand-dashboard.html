@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Dashboard | Promope</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+    .gradient-bg { background: linear-gradient(135deg, #6a5af9, #8a4af3); }
+    .gradient-text { background: linear-gradient(90deg, #6a5af9, #8a4af3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div class="flex items-center space-x-2">
+        <img src="logo.png" alt="Promope Logo" class="h-10">
+        <span class="font-bold text-xl gradient-text">Promope</span>
+      </div>
+      <div class="flex items-center space-x-6">
+        <span id="brandName" class="text-gray-700 font-medium"></span>
+        <button id="logoutBtn" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md hover:opacity-90 transition">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Content -->
+  <section class="max-w-7xl mx-auto py-10 px-6">
+    <h2 class="text-3xl font-bold gradient-text mb-6">Brand Dashboard</h2>
+
+    <!-- Tabs -->
+    <div class="flex flex-wrap gap-3 mb-8">
+      <button onclick="showTab('funds')" class="tab-btn bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md">Add Funds</button>
+      <button onclick="showTab('campaign')" class="tab-btn bg-white border px-4 py-2 rounded-md hover:bg-gray-50">Create Campaign</button>
+      <button onclick="showTab('live')" class="tab-btn bg-white border px-4 py-2 rounded-md hover:bg-gray-50">Live Campaigns</button>
+      <button onclick="showTab('applications')" class="tab-btn bg-white border px-4 py-2 rounded-md hover:bg-gray-50">Applications</button>
+    </div>
+
+    <!-- Add Funds -->
+    <div id="funds" class="tab-content">
+      <h3 class="text-xl font-semibold mb-4">💳 Add Funds</h3>
+      <input type="number" placeholder="Enter Amount (₹)" id="fundAmount" class="border p-3 rounded-md w-1/3">
+      <button onclick="addFunds()" class="ml-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-md hover:opacity-90">Add</button>
+      <p id="fundMsg" class="text-green-600 mt-3 hidden"></p>
+    </div>
+
+    <!-- Create Campaign -->
+    <div id="campaign" class="tab-content hidden">
+      <h3 class="text-xl font-semibold mb-4">📢 Create Campaign</h3>
+      <form id="campaignForm" class="space-y-4 max-w-lg">
+        <input type="text" id="campaignName" placeholder="Campaign Name" required class="w-full border p-3 rounded-md">
+        <input type="number" id="campaignBudget" placeholder="Budget (₹)" required class="w-full border p-3 rounded-md">
+        <textarea id="campaignDesc" placeholder="Campaign Description" rows="3" class="w-full border p-3 rounded-md"></textarea>
+        <button type="submit" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-3 rounded-md w-full hover:opacity-90">Create Campaign</button>
+      </form>
+      <p id="campMsg" class="text-green-600 mt-3 hidden"></p>
+    </div>
+
+    <!-- Live Campaigns -->
+    <div id="live" class="tab-content hidden">
+      <h3 class="text-xl font-semibold mb-4">🔥 Live Campaigns</h3>
+      <ul id="liveCampaigns" class="space-y-3"></ul>
+    </div>
+
+    <!-- Applications -->
+    <div id="applications" class="tab-content hidden">
+      <h3 class="text-xl font-semibold mb-4">📨 Applications</h3>
+      <p class="text-gray-600">Influencer applications will appear here once campaigns are live.</p>
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script>
+    const brandEmail = localStorage.getItem('loggedInBrand');
+    const brandData = JSON.parse(localStorage.getItem(`brand_${brandEmail}`));
+
+    if (!brandData) {
+      alert('Please log in first.');
+      window.location.href = 'brand-signup.html';
+    } else {
+      document.getElementById('brandName').textContent = brandData.brandName;
+    }
+
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white'));
+      event.target.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white');
+    }
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('loggedInBrand');
+      window.location.href = 'brand-signup.html';
+    });
+
+    // Add funds
+    function addFunds() {
+      const amt = document.getElementById('fundAmount').value;
+      if (amt) {
+        brandData.funds = (brandData.funds || 0) + parseFloat(amt);
+        localStorage.setItem(`brand_${brandEmail}`, JSON.stringify(brandData));
+        document.getElementById('fundMsg').textContent = `₹${amt} added successfully!`;
+        document.getElementById('fundMsg').classList.remove('hidden');
+      }
+    }
+
+    // Create Campaign
+    document.getElementById('campaignForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('campaignName').value;
+      const budget = document.getElementById('campaignBudget').value;
+      const desc = document.getElementById('campaignDesc').value;
+      const campaign = { name, budget, desc };
+
+      let campaigns = JSON.parse(localStorage.getItem(`campaigns_${brandEmail}`)) || [];
+      campaigns.push(campaign);
+      localStorage.setItem(`campaigns_${brandEmail}`, JSON.stringify(campaigns));
+      document.getElementById('campMsg').textContent = "Campaign created successfully!";
+      document.getElementById('campMsg').classList.remove('hidden');
+      loadCampaigns();
+    });
+
+    function loadCampaigns() {
+      const campaigns = JSON.parse(localStorage.getItem(`campaigns_${brandEmail}`)) || [];
+      const list = document.getElementById('liveCampaigns');
+      list.innerHTML = "";
+      campaigns.forEach(c => {
+        const li = document.createElement('li');
+        li.className = "border p-4 rounded-md shadow-sm bg-white";
+        li.innerHTML = `<h4 class="font-bold">${c.name}</h4><p>${c.desc}</p><p class="text-sm text-gray-600 mt-1">Budget: ₹${c.budget}</p>`;
+        list.appendChild(li);
+      });
+    }
+    loadCampaigns();
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+</body>
+</html>
