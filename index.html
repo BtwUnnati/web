@@ -1,219 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Promope - Connect Influencers with Brands</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
-        .navbar { box-shadow: 0 2px 8px rgba(0,0,0,0.07);}
-        .btn-primary { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);}
-        .btn-primary:hover {box-shadow: 0 6px 18px rgba(102, 126, 234, 0.16);}
-        .card-hover {transition:all 0.3s ease;}
-        .card-hover:hover {transform:translateY(-8px);box-shadow: 0 12px 24px rgba(0,0,0,0.14);}
-        .whatsapp-btn { position:fixed; bottom:22px; right:22px;z-index:999;width:50px; height:50px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;}
-        .page { display:none;}
-        .page.active {display:block;}
-        .star {color:#ffc107;}
-        .tab-content {display: none;}
-        .tab-content.active {display:block;}
-        ::selection { background: #7b55db; color: #fff;}
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promope | Connect Influencers & Brands</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #f9fafb; }
+    .gradient-text { background: linear-gradient(90deg, #6a5af9, #8a4af3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hover-card:hover { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: 0.3s; }
+    .whatsapp-btn { position: fixed; bottom: 20px; right: 20px; z-index: 50; }
+  </style>
 </head>
-<body class="bg-gray-50">
 
-<!-- WhatsApp Sticky Button -->
-<div class="whatsapp-btn" onclick="openWhatsApp()">
-    <i class="fab fa-whatsapp text-white text-2xl"></i>
-</div>
+<body class="overflow-x-hidden">
 
-<!-- HOMEPAGE -->
-<div id="homepage" class="page active">
-    <!-- Navbar -->
-    <nav class="navbar bg-white sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center space-x-2">
-            <div class="w-11 h-11 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-2xl">P</span>
-            </div>
-            <span class="text-2xl font-extrabold text-gray-800 tracking-tight">Promope</span>
-        </div>
-        <div class="flex space-x-2">
-            <button onclick="navigateTo('homepage')" class="px-3 py-2 text-lg rounded hover:bg-purple-100 text-gray-700">Home</button>
-            <button onclick="navigateTo('influencer-signup')" class="px-3 py-2 text-lg rounded hover:bg-purple-100 text-gray-700">For Influencers</button>
-            <button onclick="navigateTo('brand-signup')" class="btn-primary px-6 py-2 text-white rounded-lg text-lg font-semibold ml-2">For Brands</button>
-        </div>
+  <!-- Navbar -->
+  <header class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div class="flex items-center space-x-2">
+        <img src="logo.png" alt="Promope Logo" class="h-10 w-auto">
       </div>
-    </nav>
+      <nav class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <a href="index.html" class="hover:text-purple-600">Home</a>
+        <a href="influencer-signup.html" class="hover:text-purple-600">Influencers</a>
+        <a href="brand-signup.html" class="hover:text-purple-600">Brands</a>
+        <a href="#contact" class="hover:text-purple-600">Contact</a>
+      </nav>
+      <div>
+        <a href="influencer-signup.html" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md">Join Now</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient text-white py-24 px-4">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div data-aos="fade-right">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">India’s Fastest Influencer-Brand Marketplace</h1>
-                <p class="text-2xl mb-8 text-gray-100">Grow your reach, earn more, collaborate with leading brands. 1000+ influencers & 200+ companies trust us!</p>
-                <div class="flex flex-wrap gap-4">
-                    <button onclick="navigateTo('influencer-signup')" class="btn-primary px-10 py-4 text-xl rounded-lg font-bold">Join as Influencer</button>
-                    <button onclick="navigateTo('brand-signup')" class="btn-primary px-10 py-4 text-xl rounded-lg font-bold bg-pink-600 hover:bg-pink-700 ml-0 md:ml-3">List your Brand</button>
-                </div>
-                <div class="mt-4 text-sm text-purple-200">No commission. Instant onboarding. Trusted by top fintech, tech, and D2C brands.</div>
-            </div>
-            <div data-aos="zoom-in">
-                <img src="https://img.freepik.com/premium-vector/people-teamwork-network_41981-249.jpg?w=500" alt="Influencer and Brand Collab" class="w-full h-80 object-cover rounded-2xl shadow-lg border-4 border-purple-200">
-            </div>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="text-center py-20 bg-gradient-to-r from-blue-500 to-purple-600 text-white" data-aos="fade-up">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">Grow with India’s Fastest Influencer Network</h1>
+    <p class="text-lg md:text-xl mb-6 opacity-90">Connect brands and influencers for seamless collaboration</p>
+    <a href="influencer-signup.html" class="bg-white text-purple-700 font-semibold px-6 py-3 rounded-md hover:bg-gray-200 transition">Get Started</a>
+  </section>
 
-    <!-- Features/Stats -->
-    <section class="py-8 bg-white">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-            <div>
-                <div class="text-purple-700 text-4xl font-bold mb-2">2100+</div>
-                <div class="text-gray-700 font-semibold text-lg">Active Influencers</div>
-            </div>
-            <div>
-                <div class="text-purple-700 text-4xl font-bold mb-2">310+</div>
-                <div class="text-gray-700 font-semibold text-lg">Premium Brands</div>
-            </div>
-            <div>
-                <div class="text-purple-700 text-4xl font-bold mb-2">₹78L+</div>
-                <div class="text-gray-700 font-semibold text-lg">Payouts Done</div>
-            </div>
-            <div>
-                <div class="text-purple-700 text-4xl font-bold mb-2">98%</div>
-                <div class="text-gray-700 font-semibold text-lg">Success Rate</div>
-            </div>
-        </div>
-    </section>
+  <!-- Categories -->
+  <section class="max-w-6xl mx-auto py-16 px-6 text-center">
+    <h2 class="text-3xl font-bold gradient-text mb-8">Top Categories</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-4">
+      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Finance</p></div>
+      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Trading</p></div>
+      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Crypto</p></div>
+      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Tech</p></div>
+      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Fashion</p></div>
+      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Lifestyle</p></div>
+      <div class="hover-card bg-white rounded-lg p-4 shadow-sm" data-aos="fade-up"><p>Education</p></div>
+    </div>
+  </section>
 
-    <!-- Top Categories -->
-    <section class="py-12 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-10">Popular Categories</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                <div class="card-hover bg-white p-6 rounded-xl text-center"><div class="text-4xl mb-2">💰</div><h3>Finance</h3></div>
-                <div class="card-hover bg-white p-6 rounded-xl text-center"><div class="text-4xl mb-2">📈</div><h3>Trading</h3></div>
-                <div class="card-hover bg-white p-6 rounded-xl text-center"><div class="text-4xl mb-2">🪙</div><h3>Crypto</h3></div>
-                <div class="card-hover bg-white p-6 rounded-xl text-center"><div class="text-4xl mb-2">💻</div><h3>Tech</h3></div>
-                <div class="card-hover bg-white p-6 rounded-xl text-center"><div class="text-4xl mb-2">👗</div><h3>Fashion</h3></div>
-                <div class="card-hover bg-white p-6 rounded-xl text-center"><div class="text-4xl mb-2">✨</div><h3>Lifestyle</h3></div>
-                <div class="card-hover bg-white p-6 rounded-xl text-center"><div class="text-4xl mb-2">📚</div><h3>Education</h3></div>
-                <div class="card-hover bg-white p-6 rounded-xl text-center"><div class="text-4xl mb-2">🎬</div><h3>Entertainment</h3></div>
-            </div>
-        </div>
-    </section>
+  <!-- Trusted Brands -->
+  <section class="bg-gray-50 py-16" data-aos="fade-up">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold gradient-text">Trusted by Indian Brands</h2>
+      <p class="text-gray-600 mt-2">We collaborate with top fintech and lifestyle companies</p>
+    </div>
+    <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 place-items-center">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Zerodha_Logo.png" class="h-10 grayscale hover:grayscale-0 transition" alt="Zerodha">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Groww_app_logo.png" class="h-10 grayscale hover:grayscale-0 transition" alt="Groww">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Upstox_logo.svg" class="h-10 grayscale hover:grayscale-0 transition" alt="Upstox">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Angel_One_logo.png" class="h-10 grayscale hover:grayscale-0 transition" alt="Angel One">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/CoinDCX_logo.png" class="h-10 grayscale hover:grayscale-0 transition" alt="CoinDCX">
+    </div>
+  </section>
 
-    <!-- Trusted By -->
-    <section class="bg-gray-100 py-12 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">Trusted by Leading Indian Brands</h2>
-            <div class="flex flex-wrap gap-8 justify-center items-center">
-                <img src="https://1000logos.net/wp-content/uploads/2021/06/Zerodha-logo.png" alt="Zerodha" class="h-14 bg-white rounded shadow-md border" />
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Groww_app_logo.png" alt="Groww" class="h-14 bg-white rounded shadow-md border" />
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Upstox_logo.svg/512px-Upstox_logo.svg.png" alt="Upstox" class="h-14 bg-white rounded shadow-md border" />
-                <img src="https://assets.angelone.in/app/img/angel-logo-vertical.svg" alt="Angel One" class="h-14 bg-white rounded shadow-md border" />
-                <img src="https://images.coinmarketcap.com/rankings/logo/CoinDCX.png" alt="CoinDCX" class="h-14 bg-white rounded shadow-md border" />
-            </div>
-        </div>
-    </section>
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-12 py-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <img src="logo.png" alt="Promope Logo" class="h-10 mx-auto mb-2">
+      <p class="text-gray-500 mb-2">support@promope.com</p>
+      <div class="flex justify-center space-x-4 mb-2">
+        <a href="privacy.html" class="text-gray-600 hover:text-purple-600">Privacy Policy</a>
+        <a href="terms.html" class="text-gray-600 hover:text-purple-600">Terms</a>
+      </div>
+      <p class="text-gray-400 text-sm">© 2025 Promope. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <!-- Ratings/Testimonials -->
-    <section class="py-14 px-4 bg-gradient-to-br from-purple-50 to-pink-50">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-8">Loved by Creators & Brands</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl p-7 shadow-md flex flex-col items-center">
-                   <div class="flex mb-2">
-                    <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i>
-                   </div>
-                   <div class="text-center text-gray-700 italic">“Best site for genuine brand tie-ups. Received 4 campaigns in my first month!”</div>
-                   <div class="mt-3 font-bold text-purple-700">Aastha Sharma</div>
-                   <div class="text-gray-500 text-sm">Finance Influencer</div>
-                </div>
-                <div class="bg-white rounded-xl p-7 shadow-md flex flex-col items-center">
-                   <div class="flex mb-2">
-                    <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
-                   </div>
-                   <div class="text-center text-gray-700 italic">“Budget friendly! Got 12K+ followers on Instagram thanks to Collabs here!”</div>
-                   <div class="mt-3 font-bold text-purple-700">Indranil Roy</div>
-                   <div class="text-gray-500 text-sm">StartUp Marketer</div>
-                </div>
-                <div class="bg-white rounded-xl p-7 shadow-md flex flex-col items-center">
-                   <div class="flex mb-2">
-                    <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="far fa-star star"></i>
-                   </div>
-                   <div class="text-center text-gray-700 italic">“Interface easy hai, payments on time. Next-level support!”</div>
-                   <div class="mt-3 font-bold text-purple-700">Avika Patel</div>
-                   <div class="text-gray-500 text-sm">Crypto Creator</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/911234567890" class="whatsapp-btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="h-14 w-14 rounded-full shadow-lg hover:scale-105 transition" alt="WhatsApp">
+  </a>
 
-    <!-- CTA Section -->
-    <section class="py-10 bg-purple-600">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-white mb-4">Ready to Grow with Promope?</h2>
-            <p class="text-xl text-purple-200 mb-4">Free onboarding. Live campaigns now available!</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <button onclick="navigateTo('influencer-signup')" class="btn-primary px-10 py-3 rounded-lg text-lg font-semibold">Become Influencer</button>
-                <button onclick="navigateTo('brand-signup')" class="btn-primary px-10 py-3 rounded-lg text-lg font-semibold bg-pink-600 hover:bg-pink-700">I'm a Brand</button>
-            </div>
-        </div>
-    </section>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 pb-4 px-4">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
-            <div>
-                <div class="flex items-center space-x-2 mb-2">
-                    <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold">P</span>
-                    </div>
-                    <span class="text-lg font-bold">Promope</span>
-                </div>
-                <div class="text-gray-300">Connecting genuine voices to real brands.</div>
-                <div class="mt-4 text-gray-400">
-                  <span class="block"><i class="fas fa-map-marker-alt mr-2"></i>101, Sigma IT Park,<br> Noida, UP 201301, India</span>
-                  <span class="block mt-1"><i class="fas fa-phone-alt mr-2"></i>+91 98765-43210</span>
-                  <span class="block mt-1"><i class="fas fa-envelope mr-2"></i>support@promope.com</span>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold mb-2">Pages</h4>
-                <ul class="space-y-2 text-gray-400">
-                    <li><button onclick="navigateTo('homepage')" class="hover:text-white">Home</button></li>
-                    <li><button onclick="navigateTo('influencer-signup')" class="hover:text-white">For Influencers</button></li>
-                    <li><button onclick="navigateTo('brand-signup')" class="hover:text-white">For Brands</button></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-2">Other</h4>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-white">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="border-t border-gray-800 pt-5 text-center text-gray-400 text-sm">
-            &copy; 2025 Promope. All rights reserved.
-        </div>
-    </footer>
-</div>
-
-<!-- Influencer Signup, Brand Signup, Login, Influencer Dashboard, Brand Dashboard etc. -->
-<!-- Paste your previously provided feature-rich code for these pages here—uncut and unchanged, all in ONE file, as before. Your HTML from above already matches these requirements and handles ALL navigation and roles. Just copy all sections/page-divs/code/scripts as done before! -->
-
-<!-- ... [Paste signup forms, dashboards, login, and their scripts here as previously provided] ... -->
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-AOS.init({ duration: 800, once: true });
-// [Insert your navigation/role/auth/data JS logic as provided earlier.]
-</script>
 </body>
 </html>
