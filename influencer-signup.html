@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Influencer Signup | Promope</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+    .gradient-bg { background: linear-gradient(135deg, #6a5af9, #8a4af3); }
+    .gradient-text { background: linear-gradient(90deg, #6a5af9, #8a4af3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div class="flex items-center space-x-2">
+        <img src="logo.png" alt="Promope Logo" class="h-10 w-auto">
+      </div>
+      <nav class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <a href="index.html" class="hover:text-purple-600">Home</a>
+        <a href="influencer-signup.html" class="hover:text-purple-600">Influencers</a>
+        <a href="brand-signup.html" class="hover:text-purple-600">Brands</a>
+        <a href="#contact" class="hover:text-purple-600">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Signup/Login Form -->
+  <section class="flex flex-col md:flex-row items-center justify-center min-h-screen px-6 py-10">
+    <div class="w-full md:w-1/2 text-center mb-10 md:mb-0" data-aos="fade-right">
+      <h2 class="text-4xl font-bold gradient-text mb-4">Join as an Influencer</h2>
+      <p class="text-gray-600 mb-6">Create your profile and start getting brand collaborations.</p>
+      <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" class="mx-auto w-60" alt="Influencer">
+    </div>
+
+    <div class="w-full md:w-1/2 bg-white shadow-lg rounded-xl p-8" data-aos="fade-left">
+      <h3 id="form-title" class="text-2xl font-bold text-center text-gray-800 mb-6">Sign Up</h3>
+
+      <form id="signupForm" class="space-y-4">
+        <input type="text" id="name" placeholder="Full Name" required class="w-full p-3 border rounded-md">
+        <input type="email" id="email" placeholder="Email" required class="w-full p-3 border rounded-md">
+        <input type="password" id="password" placeholder="Password" required class="w-full p-3 border rounded-md">
+        <input type="text" id="whatsapp" placeholder="WhatsApp Number (Required)" required class="w-full p-3 border rounded-md">
+
+        <select id="category" class="w-full p-3 border rounded-md">
+          <option value="">Select Category</option>
+          <option>Finance</option>
+          <option>Trading</option>
+          <option>Crypto</option>
+          <option>Tech</option>
+          <option>Fashion</option>
+          <option>Lifestyle</option>
+          <option>Education</option>
+        </select>
+
+        <div class="grid grid-cols-2 gap-2">
+          <input type="text" id="instagram" placeholder="Instagram Link (optional)" class="w-full p-3 border rounded-md">
+          <input type="text" id="youtube" placeholder="YouTube Link (optional)" class="w-full p-3 border rounded-md">
+          <input type="text" id="facebook" placeholder="Facebook Link (optional)" class="w-full p-3 border rounded-md">
+          <input type="text" id="telegram" placeholder="Telegram Link (optional)" class="w-full p-3 border rounded-md">
+        </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-md hover:opacity-90 transition">
+          Sign Up
+        </button>
+
+        <p class="text-center text-sm mt-3 text-gray-600">
+          Already have an account? <a href="#" id="toggleLogin" class="text-purple-600 font-semibold">Login</a>
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- JS Logic -->
+  <script>
+    const form = document.getElementById('signupForm');
+    const toggleLogin = document.getElementById('toggleLogin');
+    const title = document.getElementById('form-title');
+
+    let isLogin = false;
+
+    toggleLogin.addEventListener('click', () => {
+      isLogin = !isLogin;
+      title.textContent = isLogin ? 'Login' : 'Sign Up';
+      form.querySelector('button').textContent = isLogin ? 'Login' : 'Sign Up';
+      toggleLogin.textContent = isLogin ? 'Create an Account' : 'Login';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (isLogin) {
+        const storedUser = JSON.parse(localStorage.getItem(email));
+        if (storedUser && storedUser.password === password) {
+          localStorage.setItem('loggedInUser', email);
+          alert('Login successful!');
+          window.location.href = 'influencer-dashboard.html';
+        } else {
+          alert('Invalid credentials!');
+        }
+      } else {
+        const userData = {
+          name: document.getElementById('name').value,
+          email,
+          password,
+          whatsapp: document.getElementById('whatsapp').value,
+          category: document.getElementById('category').value,
+          instagram: document.getElementById('instagram').value,
+          youtube: document.getElementById('youtube').value,
+          facebook: document.getElementById('facebook').value,
+          telegram: document.getElementById('telegram').value
+        };
+        localStorage.setItem(email, JSON.stringify(userData));
+        alert('Signup successful!');
+        window.location.href = 'influencer-dashboard.html';
+      }
+    });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+</body>
+</html>
