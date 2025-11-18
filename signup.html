@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Sign up — Promope</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Promope</div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container thin">
+    <h1>Create account</h1>
+    <p class="muted">Choose role and fill details.</p>
+
+    <div class="card form-card">
+      <label>Role</label>
+      <select id="role">
+        <option value="influencer">Influencer</option>
+        <option value="brand">Brand</option>
+      </select>
+
+      <div id="common-fields">
+        <label>Full name</label>
+        <input id="name" placeholder="Your name" />
+
+        <label>Email</label>
+        <input id="email" type="email" placeholder="email@example.com" />
+
+        <label>Password</label>
+        <input id="password" type="password" placeholder="At least 6 chars" />
+      </div>
+
+      <div id="influencer-fields" class="role-section">
+        <label>WhatsApp (required)</label>
+        <input id="whatsapp" placeholder="+91xxxxxxxxxx" />
+        <label>Category</label>
+        <select id="category">
+          <option>Finance</option>
+          <option>Trading</option>
+          <option>Crypto</option>
+          <option>Tech</option>
+          <option>Fashion</option>
+          <option>Lifestyle</option>
+          <option>Education</option>
+        </select>
+
+        <label>Social links (optional)</label>
+        <input id="instagram" placeholder="Instagram URL" />
+        <input id="youtube" placeholder="YouTube URL" />
+        <input id="facebook" placeholder="Facebook URL" />
+        <input id="xlink" placeholder="X / Twitter URL" />
+        <input id="telegram" placeholder="Telegram URL" />
+      </div>
+
+      <div id="brand-fields" class="role-section hidden">
+        <label>Brand name</label>
+        <input id="brandname" placeholder="Brand name" />
+        <label>Contact person</label>
+        <input id="contactperson" placeholder="Contact person" />
+        <label>WhatsApp (required)</label>
+        <input id="brand_whatsapp" placeholder="+91xxxxxxxxxx" />
+        <label>Budget</label>
+        <input id="budget" placeholder="Example: 5000" />
+        <label>Message</label>
+        <textarea id="brand_msg" placeholder="Tell us about campaign"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button id="signupBtn" class="btn-primary">Sign up</button>
+        <a href="login.html" class="muted">Already registered? Login</a>
+      </div>
+      <div id="signup-msg" class="muted"></div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
